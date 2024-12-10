@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Portfolio of Talari Ramki - Azure Data Engineer & Power BI Expert" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talari Ramki - Azure Data Engineer Portfolio</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <script src="js/jquery-1.4.2.min.js"></script>
+    <script>
+        // Basic tab handling (Can be enhanced with a library)
+        $(document).ready(function(){
+            $('.tab-content').hide();
+            $('.tabs li:first a').addClass('active');
+            $('.tab-content:first').show();
+
+            $('.tabs li a').click(function(e){
+                e.preventDefault();
+                $('.tabs li a').removeClass('active');
+                $(this).addClass('active');
+                $('.tab-content').hide();
+
+                var selectedTab = $(this).attr('href');
+                $(selectedTab).fadeIn();
+            });
+        });
+    </script>
+    <style>
+        /* Basic styling for demonstration, adjust as needed */
+        body {
+            background: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin:0; 
+            padding:0;
+        }
+        #header, #footer {
+            background: #000;
+            padding:20px;
+        }
+        #header .shell, #footer .shell, .shell {
+            width: 960px;
+            margin:0 auto;
+        }
+        #navigation {
+            float:left;
+        }
+        #navigation ul {
+            list-style:none; 
+            margin:0; 
+            padding:0;
+        }
+        #navigation ul li {
+            display:inline-block; 
+            margin-right:20px;
+        }
+        #navigation ul li a {
+            text-decoration:none; 
+            color:#fff; 
+            font-weight:bold;
+        }
+        #navigation ul li a.active, #navigation ul li a:hover {
+            text-decoration:underline;
+        }
+        #contact {
+            float:right; 
+            position:relative;
+        }
+        #intro {
+            clear:both; 
+            padding:40px 0;
+            display:flex; 
+            align-items:center; 
+            justify-content:space-between;
+        }
+        #intro .info {
+            max-width: 500px;
+        }
+        #intro h1 {
+            font-size:48px; 
+            margin:0 0 10px 0;
+        }
+        #intro h2 {
+            font-size:20px; 
+            margin:0 0 20px 0;
+            color: #ccc;
+        }
+        #intro .quote {
+            font-style:italic; 
+            color:#999;
+        }
+        #intro .author {
+            color:#777;
+            font-size:12px; 
+            margin-top:5px;
+        }
+
+        #skills {
+            padding:40px 0;
+        }
+
+        .tabs {
+            list-style:none; 
+            margin:0; 
+            padding:0;
+            border-bottom:1px solid #333;
+        }
+        .tabs li {
+            display:inline-block; 
+            margin-right:20px;
+        }
+        .tabs li a {
+            text-decoration:none; 
+            color:#ccc; 
+            padding:10px; 
+            display:inline-block;
+        }
+        .tabs li a.active, .tabs li a:hover {
+            color:#fff;
+            border-bottom:2px solid #fff;
+        }
+        .tab-content {
+            display:none; 
+            margin-top:20px;
+        }
+        .tab-content h3 {
+            margin-top:0;
+        }
+        .tab-content p, .tab-content ul {
+            line-height:1.6;
+            color:#ccc;
+        }
+        .tab-content ul {
+            list-style:disc; 
+            margin-left:20px;
+        }
+
+        #about, #portfolio, #contact-section {
+            padding:40px 0;
+        }
+        h2.section-title {
+            margin-bottom:20px; 
+            font-size:30px; 
+            border-bottom:1px solid #333; 
+            display:inline-block;
+            padding-bottom:10px;
+        }
+
+        /* Footer */
+        #footer .footerlink {
+            display:flex; 
+            justify-content:space-between; 
+            color:#999;
+        }
+        #footer a {
+            color:#999; 
+            text-decoration:none;
+        }
+        #footer a:hover {
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="shell">
+        <div id="navigation">
+            <ul>
+                <li><a class="active" href="#">HOME</a></li>
+                <li><a href="#about-section">ABOUT</a></li>
+                <li><a href="#portfolio-section">PORTFOLIO</a></li>
+                <li><a href="#contact-section">CONTACT</a></li>
+            </ul>
+        </div>
+        <div id="contact">
+            <!-- If needed, can add a contact form toggle here in the future -->
+        </div>
+        <div class="cl">&nbsp;</div>
+    </div>
+</div>
+
+<div id="intro" class="shell">
+    <div class="info">
+        <h1>Talari Ramki</h1>
+        <h2>Azure Data Engineer & Power BI Specialist</h2>
+        <p class="quote">&laquo;Data is a precious thing and will last longer than the systems themselves.&raquo;</p>
+        <p class="author">- Tim Berners-Lee</p>
+    </div>
+    <div class="profile-image">
+        <!-- You can place an image of yourself or a relevant graphic -->
+        <img src="css/images/profile-placeholder.jpg" alt="profile-placeholder" style="max-width:150px;border:2px solid #333;" />
+    </div>
+</div>
+
+<div id="about-section" class="shell">
+    <h2 class="section-title">About Me</h2>
+    <p>•	Data-driven professional with over 5 years of experience in the IT industry, specializing in designing and implementing data solutions using Python (PySpark), SQL, Power BI with DAX, and Skilled in utilizing Azure Cloud Services With a strong foundation in SQL, Python, and cloud-based technologies, I help organizations modernize their data landscapes, implement ETL/ELT pipelines, and uncover insights hidden within their data. I am always exploring new Azure services and best practices to provide robust, secure, and efficient data solutions.</p>
+    <p>•	Experienced professional in Project Management, Procurement, and Planning, with a strong focus on Quality Control and Quality Assurance. Skilled in Budget Projections, Expenditures, and Data Analytics, driving efficient resource allocation. Proficient in Techno Commercials and IETM Standard Documentation, ensuring comprehensive and organized project execution.</p>
+</div>
+
+<div id="skills" class="shell">
+    <h2 class="section-title">Azure & Data Engineering Skills</h2>
+    <ul class="tabs">
+        <li><a href="#tab-sql">SQL</a></li>
+        <li><a href="#tab-adls">Azure ADLS</a></li>
+        <li><a href="#tab-synapse">Azure Synapse</a></li>
+        <li><a href="#tab-adf">Azure Data Factory</a></li>
+        <li><a href="#tab-stream">Azure Stream Analytics</a></li>
+        <li><a href="#tab-eventhub">Event Hub</a></li>
+        <li><a href="#tab-databricks">Azure Databricks</a></li>
+    </ul>
+
+    <div id="tab-sql" class="tab-content">
+        <h3>SQL</h3>
+        <p><strong>Overview:</strong> SQL (Structured Query Language) is the backbone of data manipulation and querying in relational databases. I have extensive experience writing complex queries, optimizing performance, and ensuring data integrity.</p>
+        <ul>
+            <li>**Create Tables:**  
+                - Define the shape and rules of your data storage.  
+                - Real-Time Example: As soon as new transaction data arrives, it’s stored in a predefined table, ensuring immediate availability for dashboards and analytics.</li>
+            <li>**Query Data:**  
+                - Retrieve exactly what you need without sifting through entire datasets.  
+                - Real-Time Example: A live sales dashboard runs a direct query every minute to show current orders and revenue.</li>
+            <li>**Filter Data:**  
+                - Use conditions (e.g., WHERE) to narrow down results to precisely match your criteria.  
+                - Real-Time Example: Monitor active users in the last 5 minutes by filtering user activity logs on the fly.</li>
+            <li>**Sort Results:**  
+                - Order data by relevant fields (e.g., newest first) so important information surfaces immediately.  
+                - Real-Time Example: Customer support systems sort tickets by arrival time to always display the latest issues at the top.L</li>
+            <li>**Functions:**  
+                - Perform calculations and text manipulations directly in SQL.  
+                - Real-Time Example: A leaderboard updates instantly by calculating each player’s total points as new scores arrive</li>
+            <li>**Group Data:**  
+                - Aggregate rows based on common attributes (e.g., group by region).  
+                - Real-Time Example: A warehouse system groups inventory by product category to show real-time stock counts per category.</li>
+            <li>**Join Multiple Tables:**  
+                - Combine related data into a richer, more meaningful dataset.  
+                - Real-Time Example: Merge customer details with their order history to instantly display personalized, up-to-date recommendations.</li>
+            <li>**SQL Constraints:**  
+                - Enforce data integrity rules (like unique IDs or valid email formats) automatically.  
+                - Real-Time Example: Prevent duplicate entries in a live sign-up form, ensuring clean and reliable data as registrations pour in.</li>
+            <li>**Subqueries:**  
+                - Embed one query inside another to refine conditions and logic.  
+                - Real-Time Example: Quickly identify customers who placed orders last week and have support tickets open right now.</li>
+            <li>**CTEs (Common Table Expressions):**  
+                - Break down complex queries into readable chunks, making intricate logic simpler to maintain.  
+                - Real-Time Example: Continuously run a complex sales analysis query that calculates daily, weekly, and monthly metrics in one go.L</li>
+            <li>**Create Views:**  
+                - Present complex data sets as simplified, virtual “tables” without physically duplicating data.  
+                - Real-Time Example: A dynamic reporting view that always displays the latest KPIs, freeing analysts from constantly rewriting queries.</li>
+            <li>**Window Functions:**  
+                - Evaluate rows in relation to each other without altering the original dataset.  
+                - Real-Time Example: Generate a running total of sales as they occur, enabling trend tracking within the minute.</li>
+            <li>yet to come</li>
+            <li>yet to come</li>
+            <li>yet to come</li>
+            <li>yet to come</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            tab <li>Understand Business Requirements</li>
+            <li>Design the Database Schema</li>
+            <li>Develop Queries & Stored Procedures</li>
+            <li>Optimize Performance with Indexes & Execution Plans</li>
+            <li>Ensure Data Quality & Integrity</li>
+        </ol>
+        <p>
+            <a href="sql-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+
+    <div id="tab-adls" class="tab-content">
+        <h3>Azure Data Lake Storage (ADLS)</h3>
+        <p><strong>Overview:</strong> ADLS is a highly scalable and secure data lake for big data analytics in Azure. I leverage ADLS for storing large volumes of structured and unstructured data.</p>
+        <ul>
+            <li>Setting up hierarchical namespaces for efficient organization</li>
+            <li>Integrating ADLS with ETL/ELT tools (Azure Data Factory, Databricks)</li>
+            <li>Implementing security and access control via RBAC</li>
+            <li>Cost optimization and performance tuning</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Provision ADLS Gen2 Account</li>
+            <li>Setup Containers & Folder Structures</li>
+            <li>Integrate with Data Ingestion Pipelines</li>
+            <li>Apply Security & RBAC Permissions</li>
+            <li>Optimize Access Patterns & Costs</li>
+        </ol>
+        <p>
+            <a href="ADLS-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+
+    <div id="tab-synapse" class="tab-content">
+        <h3>Azure Synapse Analytics</h3>
+        <p><strong>Overview:</strong> Azure Synapse is an analytics service that unifies enterprise data warehousing and Big Data analytics. I use it to develop pipelines, integrate big data, and perform serverless SQL queries and Spark-based processing.</p>
+        <ul>
+            <li>Data warehousing with dedicated SQL pools</li>
+            <li>Serverless SQL for ad-hoc exploration</li>
+            <li>Integrating Spark and SQL runtimes</li>
+            <li>End-to-end data pipelines and CI/CD integration</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Provision Synapse Workspace</li>
+            <li>Setup SQL pools & Spark pools</li>
+            <li>Ingest Data using Synapse Pipelines</li>
+            <li>Transform & Analyze Data with SQL & Spark</li>
+            <li>Visualize Outputs & Integrate with Power BI</li>
+        </ol>
+    <p>
+        <a href="synapse-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+    </p>
+    </div>
+
+    <div id="tab-adf" class="tab-content">
+        <h3>Azure Data Factory (ADF)</h3>
+        <p><strong>Overview:</strong> ADF is a cloud-based ETL/ELT service for creating automated data pipelines. I design pipelines to move and transform data at scale, connecting a wide array of data sources and targets.</p>
+        <ul>
+            <li>Creating Linked Services, Datasets, and Pipelines</li>
+            <li>Mapping Data Flows for transformations</li>
+            <li>Scheduling, monitoring, and debugging pipelines</li>
+            <li>Integrating with Git for version control and CI/CD</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Define Sources & Destinations</li>
+            <li>Create Linked Services & Datasets</li>
+            <li>Build Pipelines & Mapping Data Flows</li>
+            <li>Schedule & Monitor Execution</li>
+            <li>Implement CI/CD with DevOps</li>
+        </ol>
+        <p>
+            <a href="datafactory-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+
+    <div id="tab-stream" class="tab-content">
+        <h3>Azure Stream Analytics</h3>
+        <p><strong>Overview:</strong> Stream Analytics enables real-time data streaming from sources like Event Hubs, IoT Hub, or Blob storage. I use it to process, filter, and aggregate streaming data, providing immediate insights.</p>
+        <ul>
+            <li>Defining input sources (Event Hub, IoT Hub)</li>
+            <li>Writing Stream Analytics queries for transformations</li>
+            <li>Outputting processed data to ADLS, Power BI, or SQL Database</li>
+            <li>Scaling and managing throughput</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Identify Stream Source (e.g., Event Hub)</li>
+            <li>Create Stream Analytics Job</li>
+            <li>Write Real-time Query Logic</li>
+            <li>Set Output to Desired Sink (SQL, ADLS, Power BI)</li>
+            <li>Scale & Monitor Performance</li>
+        </ol>
+        <p>
+            <a href="streamanalytics-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+
+    <div id="tab-eventhub" class="tab-content">
+        <h3>Event Hub</h3>
+        <p><strong>Overview:</strong> Azure Event Hub is a big data streaming platform and event ingestion service. I use it to reliably capture and stream millions of events per second for real-time analytics.</p>
+        <ul>
+            <li>Configuring partitions for parallelism</li>
+            <li>Integrating with Azure Stream Analytics, Databricks, or Spark</li>
+            <li>Monitoring lag and throughput</li>
+            <li>Implementing event consumer groups</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Provision Event Hub Namespace & Hub</li>
+            <li>Configure Partitions & Consumer Groups</li>
+            <li>Ingest Events from Producers</li>
+            <li>Connect Consumers (Stream Analytics, Databricks)</li>
+            <li>Monitor Throughput & Lag</li>
+        </ol>
+        <p>
+            <a href="eventhub-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+
+    <div id="tab-databricks" class="tab-content">
+        <h3>Azure Databricks</h3>
+        <p><strong>Overview:</strong> Azure Databricks is a collaborative analytics platform powered by Apache Spark. I use it to perform large-scale data transformations, data science workloads, and machine learning experiments.</p>
+        <ul>
+            <li>Configuring Databricks clusters and notebooks</li>
+            <li>Performing ETL with Spark SQL, DataFrames, and Delta Lake</li>
+            <li>Integrating with ADLS, Event Hub, and ADF</li>
+            <li>Building end-to-end ML workflows</li>
+        </ul>
+        <p><strong>Step-by-Step Approach:</strong></p>
+        <ol>
+            <li>Provision Databricks Workspace & Cluster</li>
+            <li>Develop Notebooks using PySpark/SQL</li>
+            <li>Integrate Data Sources (ADLS, Event Hub)</li>
+            <li>Perform Data Cleansing & Transformation</li>
+            <li>Output & Integrate with Downstream Analytics (Synapse/Power BI)</li>
+        </ol>
+        <p>
+            <a href="databricks-details.html" target="_blank" style="color: #00aaff; text-decoration: underline;">for detailed info, click here.</a>
+        </p>
+    </div>
+</div>
+
+<div id="portfolio-section" class="shell">
+    <h2 class="section-title">Portfolio & Projects</h2>
+    <p>Below are some of the projects and case studies where I applied the above technologies to deliver value:</p>
+    <ul>
+        <li><strong>Cloud Data Warehouse Modernization:</strong> Implemented a scalable data warehouse using Azure Synapse and ADLS, integrating data from on-prem and cloud sources.</li>
+        <li><strong>Real-time Analytics Pipeline:</strong> Designed a solution using Event Hub and Stream Analytics to process IoT sensor data in real-time, providing immediate insights.</li>
+        <li><strong>ETL Pipelines with ADF & Databricks:</strong> Created robust data ingestion and transformation pipelines, automating complex workflows and improving data freshness.</li>
+        <li><strong>Interactive BI Dashboards with Power BI:</strong> Developed self-service Power BI dashboards for stakeholders, enabling data-driven decision making and ad-hoc exploration.</li>
+    </ul>
+</div>
+
+<div id="contact-section" class="shell">
+    <h2 class="section-title">Contact Me</h2>
+    <p>If you'd like to discuss potential projects, collaborations, or just want to learn more about how I can help with your data needs, feel free to reach out:</p>
+    <form action="#" method="post" accept-charset="utf-8" style="max-width:600px;">
+        <div class="field-row">
+            <label for="name">Your Name <em>(Required)</em></label>
+            <input type="text" name="name" id="name" required style="width:100%; padding:10px; margin-bottom:10px;" />
+        </div>
+        <div class="field-row">
+            <label for="email">E-Mail Address <em>(Required)</em></label>
+            <input type="email" name="email" id="email" required style="width:100%; padding:10px; margin-bottom:10px;" />
+        </div>
+        <div class="field-row">
+            <label for="message">Message <em>(Required)</em></label>
+            <textarea name="message" id="message" rows="6" required style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+        </div>
+        <input type="submit" value="SEND MESSAGE" style="background:#333; color:#fff; padding:10px 20px; border:none; cursor:pointer;" />
+    </form>
+</div>
+
+<div id="footer">
+    <div class="shell">
+        <div class="footerlink">
+            <p class="lf">Copyright &copy; 
+                <script>document.write(new Date().getFullYear());</script> 
+                Talari Ramki - All Rights Reserved
+            </p>
+            <p class="rf">Design inspired by <a href="#">DarkPortfolio</a></p>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
