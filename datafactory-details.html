@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Detailed Explanation of ADLS" />
-    <title>SQL Details - Talari Ramki Portfolio</title>
+    <title>Azure_Data_Factory - Talari Ramki Portfolio</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
         body {
@@ -12,12 +12,12 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
-            color: #333;
+            background: #4fa178;
+            color: #101010;
         }
 
         header {
-            background: #333;
+            background: #5151ed;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
@@ -29,7 +29,7 @@
         }
 
         nav {
-            background: #444;
+            background: #bebcbc;
             padding: 10px 20px;
             text-align: center;
         }
@@ -55,8 +55,12 @@
         }
 
         main h2 {
-            color: #444;
-            margin-top: 0;
+            font-family:Georgia, Serif;
+	        font-weight:normal;
+	        font-size:23px;
+	        color:#0c0b0b;
+	        text-shadow:0 2px 0 #000;
+	        line-height:26px;
         }
 
         main p, main ul {
@@ -83,8 +87,8 @@
 </head>
 <body>
     <header>
-        <h1>ADLS : Azure Data Lake Storage</h1>
-        <p>A Deep Dive into the World of ADLS</p>
+        <h1>Azure Data Factory</h1>
+        <p>A Deep Dive into the World of Azure Data Factory</p>
     </header>
 
     <nav>
@@ -107,10 +111,224 @@
             <li>Common Use Cases</li>
         </ul>
 
-        <h2>Placeholder Section</h2>
-        <p>
-            This section is where you can add detailed content about SQL, including examples, diagrams, and references.
-        </p>
+        <h2>Below is a comprehensive, step-by-step guide to building a data integration pipeline using Azure Data Factory (ADF). We’ll start from the conceptual overview and then move into the practical steps, referencing real-world elements as we go. The scenario is as follows:</h2>
+        
+        <ul>
+            </p> Below is a comprehensive, step-by-step guide to building a data integration pipeline using Azure Data Factory (ADF). We’ll start from the conceptual overview and then move into the practical steps, referencing real-world elements as we go. The scenario is as follows:
+            </p>
+
+            </p> **Scenario**:  
+                You work as an Azure Data Engineer at a company that needs to integrate data from an on-premises SQL Server database into Azure SQL Database for reporting and analytics. The process should run daily, apply some transformations, and store the final curated data in an Azure SQL Database table. Finally, you need to notify your team via email if the pipeline fails.
+            </p>
+
+            </p>**Key Components Involved**:  
+                1. **Azure Data Factory (ADF)** – The main integration service that orchestrates and runs data pipelines.
+                2. **Linked Services** – Connections to data sources and destinations (e.g., SQL Server, Azure SQL DB, Blob Storage, Key Vault).
+                3. **Datasets** – Metadata definitions pointing to the data you want to work with (e.g., tables, files).
+                4. **Integration Runtime** – Compute used by ADF to move and transform data.  
+               - **Self-Hosted Integration Runtime (SHIR)** for on-premises connectivity.
+               - **Azure Integration Runtime** for cloud data movement and transformation.
+                5. **Activities** – Tasks performed in a pipeline (e.g., Copy Activity, Lookup Activity, Stored Procedure Activity, Mapping Data Flow).
+                6. **Pipelines** – Logical grouping of activities that together perform a sequence of data-related tasks.
+                7. **Triggers** – Schedules or event-based execution triggers for running pipelines.
+                8. **Monitoring & Alerts** – Tools within ADF to monitor pipeline runs and alert on failures.
+                9. **Azure Key Vault** (optional) – Used to store credentials securely.
+            </p>
+            
+            </p>### Step-by-Step Implementation
+            
+                </p>#### Step 1: Set Up the Environment
+
+                 - **Prerequisites**:  
+                 - An **Azure Subscription**.  
+                 - Permissions to create resources in Azure.  
+                 - Access to your **on-premises SQL Server** or a replica.  
+                 - An **Azure SQL Database** created and accessible.  
+                 - A suitable **Azure Data Factory** instance created in the same region as your target services.
+                </p>
+            
+                </p>**Initial Azure Services**:  
+                    1. **Create or Identify Your Azure Data Factory**:  
+                    - In the Azure Portal, search for “Data Factories” and click “Create.”  
+                 - Provide a name, select your subscription and resource group, choose a location, and review settings.  
+                 - Click “Create” to provision the ADF instance.
+                </p>
+
+                </p>
+                    2. **Integration Runtime Setup**:  
+                 - If pulling data from on-premises SQL Server, you need a **Self-Hosted Integration Runtime (SHIR)**.  
+                 - In the ADF Manage hub, click on “Integration Runtimes” and choose “New.”  
+                 - Select “Self-Hosted,” download and install the SHIR on a machine that can access the on-prem database.  
+                 - Register the SHIR with your ADF by providing the authentication key.
+                </p>
+
+            </p>
+            #### Step 2: Create Linked Services
+            Linked Services define the connection information to your data sources and sinks.
+            </p>
+            </p>
+            - **Linked Service to On-Premises SQL Server**:  
+              1. In ADF, go to “Manage” (the wrench icon on the left sidebar), then “Linked Services,” and click “New.”  
+              2. Select “Azure SQL Database” or “SQL Server” depending on where your source is hosted.  
+              3. If on-prem, pick “SQL Server” and ensure the Integration Runtime is your SHIR.  
+              4. Provide connection details: Server name, database name, and use integrated authentication or a SQL login. Test the connection.  
+              5. Click “Create.”
+            </p>
+
+            </p>
+            - **Linked Service to Azure SQL Database (Target)**:  
+              1. Click “New” again.  
+              2. Choose “Azure SQL Database.”  
+              3. Select “Azure” Integration Runtime.  
+              4. Provide Server name, database name, and credentials. You might store credentials in **Azure Key Vault** and reference them here.  
+              5. Test the connection and create the linked service.
+            
+            *(Optional)*: If you want to stage data temporarily, you can create a Linked Service to **Azure Blob Storage** or **ADLS Gen2**, following a similar process.
+            </p>
+
+            </p>
+            #### Step 3: Create Datasets
+            Datasets represent the structure and location of your data.
+            </p>
+            
+            </p>
+            - **Source Dataset (On-Prem SQL Server Table)**:  
+              1. In the “Author” section of ADF, go to “+” and select “Dataset.”  
+              2. Choose the data store: e.g., “Azure SQL Database” or “SQL Server” depending on your Linked Service.  
+              3. Select the Linked Service you created for the on-prem SQL Server.  
+              4. Specify the table you want to copy. For example: “dbo.CustomerRecords.”  
+              5. Name this dataset: “ds_OnPrem_CustomerRecords.”
+
+            </p>
+            
+            - **Sink Dataset (Azure SQL Database Table)**:  
+              1. Again, click “+” > “Dataset.”  
+              2. Choose “Azure SQL Database.”  
+              3. Select the Linked Service for the Azure SQL Database.  
+              4. Specify the target table name, e.g., “dbo.Customers_Staging.”  
+              5. Name the dataset: “ds_AzureSQL_CustomersStaging.”
+            </p>
+            
+            </p>
+            #### Step 4: Create a Pipeline and Add Activities
+            Pipelines are where you define your data workflow.
+            
+            1. In ADF “Author” tab, click “+” > “Pipeline.”
+            2. Name the pipeline, e.g., “pl_CopyCustomers_OnPremToAzure.”
+            
+            **Add a Copy Activity**:  
+            1. From the Activities pane, drag and drop a “Copy data” activity into the pipeline canvas.  
+            2. Name it “CopyCustomers.”  
+            3. In the activity’s “Source” tab, select the “ds_OnPrem_CustomerRecords” dataset.  
+            4. In the “Sink” tab, select the “ds_AzureSQL_CustomersStaging” dataset.  
+            5. In the “Mappings” tab (optional), map source columns to sink columns if they differ. If not, ADF will auto-map by matching names.
+            </p>
+
+            </p>
+            **Add a Data Transformation Step (Optional)**:  
+            If you need transformations (like filtering, aggregating, or cleaning data) before loading into Azure SQL DB, you could:
+            
+            - Use **Mapping Data Flows**:  
+              1. Create a new Data Flow.  
+              2. Add a Source, select the on-prem dataset.  
+              3. Add transformations (e.g., filter out customers with no last name, rename columns, derive new columns).  
+              4. Sink the transformed data into the Azure SQL table.  
+              5. Back in the pipeline, use a Data Flow Activity. Configure the Integration Runtime, and link the flow.
+            
+            *(For simplicity, let’s assume the Copy Activity is sufficient in this scenario. If transformations are needed, they can be done via a Stored Procedure Activity on the Azure SQL side or a Data Flow.)*
+            </p>
+
+            </p>
+            **Add a Stored Procedure Activity (Optional)**:  
+            If you want to run a stored procedure on the target database after loading, for example, to merge staging data into a final production table:
+            
+            1. Drag a “Stored Procedure” activity onto the pipeline canvas.  
+            2. Connect the “CopyCustomers” activity’s “On Success” output to this new activity.  
+            3. Select the Azure SQL Database linked service.  
+            4. Pick the stored procedure name (e.g., “sp_MergeCustomers”).  
+            5. Parameterize if needed.
+            </p>
+
+            </p>
+
+            **Add an Email Notification Activity on Failure (Optional)**:  
+            For notification on failures, integrate with Logic Apps or use an ADF Web Activity to call a web hook, or use SendGrid. Another approach is to create an Alert rule in Azure Monitor for ADF pipeline failures.
+            
+            - To keep it simple, let’s assume you have a Logic App that sends emails. You can add a Web Activity at the end of the pipeline on the “On Failure” path that calls the Logic App endpoint passing the pipeline name and error message.
+            
+            </p>
+
+            </p>
+            #### Step 5: Parameterize and Make the Pipeline Flexible (Optional)
+            You may want to:
+            - **Parameterize** table names, file paths, or stored procedure parameters so that the pipeline can be reused for different tables.
+            - In the pipeline’s “Parameters” section, define parameters like “TableName.”
+            - In the datasets, use expressions like `@pipeline().parameters.TableName` in the Table field.
+            - Make sure your pipeline activities reference these parameters where appropriate.
+            </p>
+
+            </p>
+            #### Step 6: Scheduling the Pipeline Run (Triggers)
+            You want this process to run daily at, say, 2:00 AM.
+            
+            1. In ADF, go to “Manage” > “Triggers” > “New.”
+            2. Select “Schedule.”
+            3. Set the start time, recurrence (every 24 hours), and any end date if needed.
+            4. Associate the trigger with your pipeline.
+            
+            Now, the pipeline will run automatically every day at 2:00 AM.
+            </p>
+
+            </p>
+            #### Step 7: Test the Pipeline
+            1. In the Author mode, click “Debug” on the pipeline.  
+            2. Check the Output pane to see the status of your run.  
+            3. If using SHIR, ensure the machine hosting it is online and can connect to the on-prem SQL Server.  
+            4. After a successful run, verify data in Azure SQL Database’s “Customers_Staging” table.
+            </p>
+
+            </p>
+            #### Step 8: Monitor and Manage
+            - Go to the “Monitor” tab in ADF.  
+            - You can see pipeline runs, activity runs, and if there are any failures.  
+            - Set up Alerts via Azure Monitor for any failures, so you get notified by email.  
+            - Use the monitoring dashboard to track pipeline performance and investigate issues.
+            </p>
+
+            </p>
+            #### Step 9: Security Considerations
+            - Store credentials in **Azure Key Vault** rather than hardcoding in linked services.  
+            - Use Managed Identities where possible for authentication.  
+            - Ensure the SHIR machine is secure and can only be accessed by authorized personnel.
+            </p>
+
+            </p>
+            #### Step 10: Incremental Loads (Advanced)
+            For real-world scenarios, you might implement **incremental loads** instead of copying the entire table each time. This can be done by:
+            - Using a “Lookup” activity to read the last load time from a control table.
+            - Filtering source data based on the last load time.
+            - Updating the last load time after a successful load.
+            </p>
+
+            </p>
+                        #### Step 11: Version Control (Optional)
+            - Integrate ADF with a Git repository (e.g., Azure DevOps Git or GitHub) for version control.  
+            - Develop and test in a feature branch and then merge changes back to main after review.
+            </p>
+        
+            </p>
+            ### Summary of the Flow
+            1. A pipeline runs daily via a trigger.
+            2. A Copy Activity reads from an on-prem SQL Server table using a self-hosted IR.
+            3. Data is written into an Azure SQL Database staging table.
+            4. (Optional) A Stored Procedure merges staging data into final production tables.
+            5. On success or failure, monitoring and alerts are in place.
+            6. Transformations can be done via Mapping Data Flows or Stored Procedures as needed.
+            7. Credentials and configuration are securely managed via Key Vault and parameterization.
+            
+            By following these steps, you’ve created a robust, secure, and automated data integration pipeline using Azure Data Factory that follows common best practices.   
+            </p>
+        <ul>
     </main>
 
     <footer>
